@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/8eb7a058-b4ec-4163-a9b3-8ed84fb55826)# TransferBot
+# TransferBot
 MiniGame in Telegram Bot 
 
 
