@@ -5,9 +5,10 @@ from .config import Config
 
 DATABASE_URL = Config.DATABASE_URL
 
-engine = create_async_engine(DATABASE_URL, echo=True, future=True)
 
 Base = declarative_base()
+engine = create_async_engine(DATABASE_URL, echo=True, future=True)
+
 
 SessionLocal = sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 

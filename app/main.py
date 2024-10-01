@@ -15,6 +15,8 @@ from .handlers import (
 )
 from .utils.scheduler import run_scheduler
 from .database import engine, Base
+from .models.user import User
+from .models.referral import Referral
 from aiogram import exceptions
 import logging
 
@@ -46,6 +48,9 @@ async def on_shutdown(dispatcher: Dispatcher):
 
 async def main():
 
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
     # Инициализация бота и диспетчера
     bot = Bot(
         token=Config.BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML)
@@ -55,7 +60,7 @@ async def main():
 
     # Регистрация обработчиков
     dp.errors.register(on_error)
-    registration.register_handler(dp)
+    registration.register_handlers(dp)
     transfer.register_handlers(dp)
     referrals.register_handlers(dp)
     admin.register_handlers(dp)

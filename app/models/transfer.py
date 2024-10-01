@@ -2,8 +2,7 @@ from sqlalchemy import Column, Integer, ForeignKey, Float, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
-
-Base = declarative_base()
+from app.database import Base
 
 
 class Transfer(Base):
